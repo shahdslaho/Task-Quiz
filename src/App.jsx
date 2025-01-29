@@ -6,8 +6,8 @@ import { zodResolver } from "@hookform/resolvers/zod";
 
 
 const schema = z.object({
-  name: z.string(),
-  email: z.string(),
+  name: z.string().min(2,{message:"name is required"}),
+  email: z.string().min(5,{message:" Email is required"}),
   password: z.string()
     .min(8, { message: "Password must be at least 8 characters long" })
     .max(255),
@@ -41,7 +41,7 @@ const App = () => {
           Name
           </label>
           <input
-            {...register("name" ,{ required: " name is required" }) }
+            {...register("name" ) }
             type="text"
             id='name'
             name='name'
@@ -59,7 +59,7 @@ const App = () => {
          Email
           </label>
           <input
-            {...register("email"  ,{ required: " Email is required" })}
+            {...register("email")}
             type="email"
                 id='email'
             name='email'
@@ -76,7 +76,7 @@ const App = () => {
         Password
           </label>
           <input
-            {...register("password" ,{ required: " Password is required" }) }
+            {...register("password") }
             type="password"
             placeholder="Enter your password"
             className="border border-gray-300 rounded-lg px-3 py-2 mt-1 focus:outline-none focus:ring-2 focus:ring-blue-500"
@@ -92,7 +92,7 @@ const App = () => {
         Confirm Password
           </label>
           <input
-            {...register("confirm" ,{ required: "Confirm Password is required" }) }
+            {...register("confirm") }
             type="password"
             placeholder="Confirm Password"
             className="border border-gray-300 rounded-lg px-3 py-2 mt-1 focus:outline-none focus:ring-2 focus:ring-blue-500"
